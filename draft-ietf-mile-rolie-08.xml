@@ -391,7 +391,7 @@
           using <xref target="RFC6546"> Transport of Real-time Inter-network Defense (RID) Messages
             over HTTP/TLS</xref>.</t>
         <t>The following additional requirements apply for implementations supporting handling of
-          the "/" resource::<list style="symbols">
+          the "/" resource:<list style="symbols">
             <t>Consistent with RFC6546 errata, a client requesting a GET on the "/" resource SHOULD
               receive an HTTP status code 405 Method Not Allowed.</t>
             <t>An implementation MAY provide full support for <xref target="RFC6546"/> such that a
