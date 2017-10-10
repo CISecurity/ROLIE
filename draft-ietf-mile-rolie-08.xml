@@ -126,7 +126,7 @@
         representation agnostic. An overview of the extension system is provided in <xref
           target="content-model"/>. Implementers seeking to provide support for specific security
         automation information types should refer to the specification for that domain described by
-        the IANA registry found in section <xref target="iana-information-type" format="counter"
+        the IANA registry found in <xref target="iana-information-type"
         />.</t>
     </section>
     <section title="Terminology" anchor="ext-terminology">
@@ -279,7 +279,7 @@
             Collection represents a pointer to a group of security automation information resources
             pertaining to a given type of security automation information. Collections are
             represented as Atom Feeds as per RFC 5023. Atom Feed specific requirements are defined
-            in section <xref target="atom-synd-feed" format="counter"/>.</t>
+            in <xref target="atom-synd-feed"/>.</t>
           <t>ROLIE defines specialized data requirements for Collections, Feeds, and Entries
             containing security automation related data. The difference between a ROLIE and a
             non-ROLIE Collection defined in a Service Document can be determined as follows:<list
@@ -288,8 +288,8 @@
                 Collection, the app:collection MUST contain an app:categories element that contains
                 only one atom:category element with the "scheme" attribute value of
                 "urn:ietf:params:rolie:category:information-type". This category MUST have an
-                appropriate "term" attribute value as defined in section <xref
-                  target="content-model-category-general" format="counter"/>. This ensures that a
+                appropriate "term" attribute value as defined in <xref
+                  target="content-model-category-general"/>. This ensures that a
                 given Collection corresponds to a specific type of security automation
                 information.</t>
               <t hangText="Non-ROLIE Collection:">For an app:collection to be considered a non-ROLIE
@@ -428,15 +428,15 @@
           resources. Each Entry in an atom:feed represents an individual resource (e.g., a specific
           checklist, a software vulnerability record). Additional Feeds can be used to represent
           other collections of security automation resources.</t>
-        <t>As discussed in section <xref target="atompub-service-collection" format="counter"/>,
+        <t>As discussed in <xref target="atompub-service-collection"/>,
           ROLIE defines specialized data requirements for Feeds containing security automation
           related data. The difference between a ROLIE and a non-ROLIE Feed can be determined as
             follows:<list style="hanging">
             <t hangText="ROLIE Feed:">For an atom:feed to be considered a ROLIE Feed, the atom:feed
               MUST contain only one child atom:category element with the "scheme" attribute value of
               "urn:ietf:params:rolie:category:information-type". This category MUST have an
-              appropriate "term" attribute value as defined in section <xref
-                target="content-model-category-general" format="counter"/>. This ensures that a
+              appropriate "term" attribute value as defined in <xref
+                target="content-model-category-general"/>. This ensures that a
               given Feed corresponds to a specific type of security automation information.</t>
             <t hangText="Non-ROLIE Feed:">For an atom:feed to be considered a non-ROLIE Feed, the
               atom:feed MUST NOT contain an atom:category element with a "scheme" attribute value of
@@ -445,8 +445,8 @@
         <t>By distinguishing between ROLIE and non-ROLIE Feeds in this way, implementations
           supporting ROLIE can host Feeds pertaining to security automation information alongside
           Feeds of other non-ROLIE information within the same AtomPub instance. This is parallel to
-          the handling of collections ealier in this specification in section <xref
-            target="atompub-service-collection" format="counter"/>.</t>
+          the handling of collections ealier in this specification in <xref
+            target="atompub-service-collection"/>.</t>
         <t>The following Atom Feed definition represents a stricter definition of the atom:feed
           element defined in RFC 4287 when used as a ROLIE Feed. Any element not specified here
           inherits its definition and requirements from <xref target="RFC4287"/>.</t>
@@ -544,7 +544,7 @@
             If a client encounters an unknown link relationship type, the client MUST ignore the
             unrecognized link and continue processing as if the unrecognized link element did not
             appear. The definition of new Link relations that provide additional state transition
-            extensions is discussed in section <xref target="content-model-link" format="counter"
+            extensions is discussed in <xref target="content-model-link"
             />.</t>
         </section>
         <section title="Use of the &quot;atom:updated&quot; Element" anchor="atom-synd-feed-updated">
@@ -560,8 +560,8 @@
           referenced information record, along with descriptive information about its format, media
           type, and other publication metadata. The following atom:entry schema definition
           represents a stricter representation of the atom:entry element defined in <xref
-            target="RFC4287"/> for use in a ROLIE-based Atom Feed as defined in section <xref
-            target="atom-synd-feed-category" format="counter"/>.</t>
+            target="RFC4287"/> for use in a ROLIE-based Atom Feed as defined in <xref
+            target="atom-synd-feed-category"/>.</t>
         <figure height="" suppress-title="false" width="" alt="" title="" align="left">
           <artwork height="" name="" width="" type="" alt="" align="left" xml:space="preserve"><![CDATA[
   atomEntry =
@@ -619,7 +619,7 @@
             If a client encounters an unknown link relationship type, the client MUST ignore the
             unrecognized link and continue processing as if the unrecognized link element did not
             appear. The definition of new Link relations that provide additional state transition
-            extensions is discussed in section <xref target="content-model-link" format="counter"
+            extensions is discussed in <xref target="content-model-link"
             />.</t>
         </section>
         <section title="Use of the &quot;rolie:format&quot; Element"
@@ -765,27 +765,27 @@
           <t>To further differentiate category types used in ROLIE, an IANA sub-registry has been
             established for ROLIE protocol parameters to support the registration of new category
             "scheme" attribute values by ROLIE extension specifications. Use of this extension point
-            is discussed in section <xref target="iana-parameters" format="counter"/> using the name
+            is discussed in <xref target="iana-parameters"/> using the name
             field with a type parameter of "category" to indicate a category extension.</t>
         </section>
         <section title="Identification of Security Automation Information Types"
           anchor="content-model-category-info-type">
           <t>A ROLIE specific extension point is provided through the atom:category "scheme" value
             "urn:ietf:params:rolie:category:information-type". This value is a Uniform Resource Name
-            (URN) <xref target="RFC2141"/> that is registered with IANA as described in section
-              <xref target="iana-parameters" format="counter"/>. When used as the "scheme" attribute
+            (URN) <xref target="RFC2141"/> that is registered with IANA as described in
+              <xref target="iana-parameters"/>. When used as the "scheme" attribute
             in this way, the "term" attribute is expected to be a registered value as defined in
             section <xref target="iana-information-type"/>. Through this mechanism a given security
             automation information type can be used to:<list style="numbers">
               <t>identify that an "app:collection" element in a Service Document points to an Atom
                 Feed that contains Entries pertaining to a specific type of security automation
-                information (see section <xref target="atompub-service-collection" format="counter"
+                information (see <xref target="atompub-service-collection"
                 />), or</t>
               <t>identify that an "atom:feed" element in an Atom Feed contains Entries pertaining to
-                a specific type of security automation information (see section <xref
-                  target="atom-synd-feed-category" format="counter"/>).</t>
-              <t>identify the information type of a standalone Resource (see section <xref
-                  target="atom-synd-entry-standalone" format="counter"/>).</t>
+                a specific type of security automation information (see <xref
+                  target="atom-synd-feed-category"/>).</t>
+              <t>identify the information type of a standalone Resource (see <xref
+                  target="atom-synd-entry-standalone"/>).</t>
             </list></t>
           <t>For example, the notional security automation information type "incident" would be
             identified as follows:</t>
@@ -820,14 +820,14 @@
             relations, other categories, and Format data model extensions to address the
             representational needs of these specific information types. New information types are
             added to ROLIE through registrations to the IANA ROLIE Security Resource Information
-            Type registry defined in section <xref target="iana-information-type" format="counter"
+            Type registry defined in <xref target="iana-information-type"
             />.</t>
         </section>
       </section>
       <section title="The &quot;rolie:format&quot; Extension Point" anchor="content-model-format">
         <t>Security automation data pertaining to a given information type may be expressed using a
-          number of supported formats. As described in section <xref
-            target="atom-synd-entry-rolie-format" format="counter"/>, the rolie:format element is
+          number of supported formats. As described in <xref
+            target="atom-synd-entry-rolie-format"/>, the rolie:format element is
           used to describe the specific data model used to represent the resource referenced by a
           given "atom:entry". The structure provided by the rolie:format element, provides a
           mechanism for extension within the atom:entry model. ROLIE extensions MAY further restrict
@@ -902,7 +902,7 @@
             <t hangText="ROLIE XML Schema">The ROLIE schema (rolie-1.0) has been registered in the
               "schema" registry. <vspace blankLines="1"/>URI: urn:ietf:params:xml:schema:rolie-1.0
                 <vspace blankLines="1"/>Registrant Contact: IESG <vspace blankLines="1"/>XML: See
-              section <xref target="appendix-schema" format="counter"/> of this document.</t>
+              <xref target="appendix-schema"/> of this document.</t>
           </list></t>
       </section>
       <section title="ROLIE URN Sub-namespace" anchor="iana-urn">
@@ -1037,8 +1037,8 @@
         document.</t>
       <t>To protect the confidentiality of a given resource provided by a ROLIE implementation,
         requests for retrieval of the resource need to be authenticated to prevent unauthorized
-        users from accessing the resource (see section <xref target="atompub-auth-authz"
-          format="counter"/>). It can also be useful to log and audit access to sensitive resources
+        users from accessing the resource (see <xref target="atompub-auth-authz"
+          />). It can also be useful to log and audit access to sensitive resources
         to verify that proper access controls remain in place over time.</t>
       <t>The approach described herein is based upon all policy enforcements being implemented at
         the point when a resource representation is created. As such, producers sharing cyber
