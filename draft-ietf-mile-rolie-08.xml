@@ -171,7 +171,7 @@
     </section>
     <section title="Background and Motivation" anchor="back-motive">
       <t>In order to automate security process, tools need access to sufficient sources of
-        structured, security information that can be used to drive security processes. Thus,
+        structured security information that can be used to drive security processes. Thus,
         security information sharing is one of the core components of automating security processes.
         Vulnerabilities, configurations, software identification, security incidents, and patch data
         are just a few of the classes of information that are shared today to enable effective
