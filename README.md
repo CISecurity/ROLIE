@@ -1,14 +1,13 @@
 # ROLIE
 
-This is an area related to ongoing work related to the Resource-oriented Lightweight Information Exchange (ROLIE) draft on the Managed Incident Lightweight Exchange (MILE) working group of the IETF.
-
+This is repository to stage ongoing work related to the Resource-oriented Lightweight Information Exchange (ROLIE) draft in the Managed Incident Lightweight Exchange (MILE) working group of the IETF.
 
 
 ## Document Status
 
-The main draft is in WGLC, and can be found under the name draft-ietf-mile-rolie-07.xml.
+The main draft is in IETF Last Call, and can be found under the name draft-ietf-mile-rolie-10.xml.
 
-The secondary CSIRT document spun off of the main document is currently a personal draft targetting the MILE WG, and can be found under the name draft-banghart-mile-rolie-csirt-01.xml. 
+The secondary CSIRT document spun off of the main document is currently a personal draft targeting the MILE WG, and can be found under the name draft-banghart-mile-rolie-csirt-01.xml. 
 
 An experimental CSS file is being worked on within this Repo for real-time rendering of RFC documents. It can be found under the name rfc7749.css. For now issues may be opened regarding this side project, although if it continues to be a source of discussion it will be moved to a seperate location.
 
