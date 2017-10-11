@@ -1,6 +1,6 @@
 # ROLIE
 
-This is repository to stage ongoing work related to the Resource-oriented Lightweight Information Exchange (ROLIE) draft in the Managed Incident Lightweight Exchange (MILE) working group of the IETF.
+This is a repository to stage ongoing work related to the Resource-oriented Lightweight Information Exchange (ROLIE) draft in the Managed Incident Lightweight Exchange (MILE) working group of the IETF.
 
 
 ## Document Status
