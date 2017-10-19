@@ -48,7 +48,7 @@
   "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6749.xml">
 ]>
 <?xml-stylesheet type="text/css" href="rfc7749.css"?>
-<rfc ipr="trust200902" category="std" docName="draft-ietf-mile-rolie-10">
+<rfc ipr="trust200902" category="std" docName="draft-ietf-mile-rolie-11">
   <?rfc compact="yes"?>
   <?rfc subcompact="no"?>
   <?rfc toc="yes"?>
@@ -227,8 +227,8 @@
     </section>
     <section title="Background and Motivation" anchor="back-motive">
       <t>In order to automate security process, tools need access to
-        sufficient sources of structured security information that can
-        be used to drive security processes. Thus, security information
+        sufficient sources of structured security information that can be
+        used to drive security processes. Thus, security information
         sharing is one of the core components of automating security
         processes. Vulnerabilities, configurations, software
         identification, security incidents, and patch data are just a few
@@ -345,13 +345,12 @@
             may be in a Service Document or the specific Collections to
             be provided within a given Workspace.</t>
           <t>A ROLIE implementation can host Collections containing both
-            public and private information entries. It is RECOMMENDED
-            that implementations segregate public and private Collections
-            into different app:workspace elements. By doing this,
-            Workspaces that contain private information can be ignored by
-            clients or can be omitted from the Service Document provided
-            to a client that lacks the appropriate privilege to access
-            the set of Collections associated with the Workspace.</t>
+            public and private information entries. It is suggested that
+            implementations segregate Collections into different
+            app:workspace elements by their client access requirements.
+            With proper naming of workspaces, this reduces the amount of
+            trial and error a human user would need to utilize to
+            discover accessible Collections.</t>
         </section>
         <section title="Use of the &quot;app:collection&quot; Element"
           anchor="atompub-service-collection">
@@ -411,8 +410,9 @@
               allows other category metadata to be included.</t>
             </list></t>
         </section>
-        <section title="Service Discovery" anchor="atompub-discover">
-          <t>This specification requires that an implementation MUST
+        <section title="Service Document Discovery"
+          anchor="atompub-discover">
+          <t> ..his specification requires that an implementation MUST
             publish an Atom Service Document that describes the set of
             security information Collections provided by the service. The
             Service Document MUST be retrievable using the standardized
@@ -436,86 +436,44 @@
             DNS domain.</t>
         </section>
       </section>
-      <section title="AtomPub Category Documents"
+      <section title="Category Documents"
         anchor="atompub-discover-category">
         <t>As described in <xref target="RFC5023">RFC5023 section
           7</xref>, a Category Document is an XML-based document format
           that allows a client to dynamically discover the Categories
-          used within AtomPub Service Documents, and Atom Syndication
-          Feed and Entry documents provided by a publisher. A Category
+          used within AtomPub Service Documents, Atom Syndication Feeds,
+          and Entry documents provided by a publisher. A Category
           Document consists of one app:categories element that contains a
           number of inline atom:category elements, or a URI referencing a
           Category Document.</t>
-        <t>A ROLIE implementation MUST publish a Category Document that
-          describes the set of atom:category elements and associated
-          terms currently used by the service.</t>
-        <t>The Category Document MUST be retrievable using the
-          standardized URI template
-          "https://{host:port}/.well-known/rolie/categorydocument", where
-          {host:port} is the authority portion of the URI. Dereferencing
-          this URI MAY result in a redirect based on an appropriate HTTP
-          3xx status code to direct the client to the actual Category
-          Document. This allows clients to have a well-known location to
-          find a ROLIE category document, while giving implementations
-          flexibility over how the service is deployed.</t>
-        <t>This document registers the "rolie/categorydocument"
-          well-known URI as per <xref target="RFC5785"/> in <xref
-          target="iana-well-known"/>.</t>
       </section>
       <section title="Transport Layer Security" anchor="atompub-tls">
-        <t>ROLIE is intended to be handled with TLS. The following
-          requirements have been in part derived from <xref
-          target="RFC7589"/>.</t>
-        <t>TLS version 1.2 MUST be supported. TLS 1.2 SHOULD be
-          implemented according to all recommendations and best practices
-          present in <xref target="RFC7525"/>.</t>
+        <t>ROLIE is intended to be handled with TLS. TLS version 1.2 MUST
+          be supported. TLS 1.2 SHOULD be implemented according to all
+          recommendations and best practices present in <xref
+          target="RFC7525"/>.</t>
         <t>It is RECOMMENDED that the most recent published version of
           TLS is supported. If this version is TLS 1.3 <xref
           target="I-D.ietf-tls-tls13"/>, it is recommended that 0-RTT
           (Zero Round Trip Time Resumption) is not used, as there is a
           replay attack that is possible with that option.</t>
-        <t>The server MUST support certificate-based client
-          authentication. An implementation MUST support the set of TLS
-          cipher suites that are REQUIRED by the latest published version
-          of the TLS specification. An implementation MUST also support
-          the TLS cipher suites that provide support for mutual
-          authentication of clients and servers.</t>
-        <t>During the TLS negotiation, the client MUST carefully examine
-          the certificate presented by the server to determine if it
-          meets the client’s expectations. Particularly, the client MUST
-          check its understanding of the server hostname against the
-          server’s identity as presented in the server Certificate
-          message, in order to prevent man-in-the-middle attacks.
-          Matching is performed according to the rules laid out in the
-          Security Considerations section of <xref target="RFC4642"/>. If
-          the match fails, the client MUST either ask for explicit user
-          confirmation or terminate the connection and indicate the
-          server’s identity is suspect. If the client has external
-          information as to the expected identity of the server, the
-          hostname check MAY be omitted.</t>
-        <t>Clients MUST verify the binding between the identity of the
-          servers to which they connect and the public keys presented by
-          those servers. Client implementations SHOULD support a
-          certificate validation approach based on section 6 of <xref
-          target="RFC5280"/>.</t>
-        <t>The server MUST be capable of verifying the identity of the
-          client with certificate-based authentication according to local
-          policy to ensure that the incoming client request is legitimate
-          before any configuration or state data is sent to or received
-          from the client.</t>
+        <t>The server MUST implement certificate-based client
+          authentication. This MAY be enabled on a workspace by workspace
+          basis. </t>
       </section>
       <section title="User Authentication and Authorization"
         anchor="atompub-auth-authz">
         <t>Implementations MUST support user authentication. However, a
           given implementation MAY allow user authentication to be
-          disabled on a feed by feed basis.</t>
+          disabled on a Feed by Feed, or Workspace by Workspace
+          basis.</t>
         <t>Servers participating in an information sharing consortium and
           supporting interactive user logins by members of the consortium
           SHOULD support client authentication via a federated identity
           scheme.</t>
         <t>This document does not mandate the use of any specific user
           authorization mechanisms. However, service implementers SHOULD
-          provide appropriate authorization checking for all resource
+          support appropriate authorization checking for all resource
           accesses, including individual Atom Entries, Atom Feeds, and
           Atom Service Documents.</t>
       </section>
@@ -526,9 +484,9 @@
           existing deployments that are using <xref target="RFC6546">
           Transport of Real-time Inter-network Defense (RID) Messages
           over HTTP/TLS</xref>.</t>
-        <t>The following additional requirements apply for
-          implementations supporting handling of the "/" resource:<list
-          style="symbols">
+        <t>The following additional requirements only apply if a
+          implementation is supporting the "/" resource as described
+          above:<list style="symbols">
           <t>Consistent with RFC6546 errata, a client requesting a GET on
             the "/" resource SHOULD receive an HTTP status code 405
             Method Not Allowed.</t>
@@ -543,7 +501,8 @@
             location.</t>
           </list></t>
         <t>If the "/" resource is unsupported, then a request for this
-          resource MUST provide a 404 HTTP status code.</t>
+          resource MAY be handled as deemed appropriate by the
+          server.</t>
       </section>
       <section title="HTTP methods" anchor="atompub-http-methods">
         <t>Servers MAY accept request methods beyond those specified in
@@ -639,9 +598,9 @@
 
         <section title="Use of the &quot;atom:category&quot; Element"
           anchor="atom-synd-feed-category">
-          <t>An atom:feed can contain zero or more atom:category
-            elements. In Atom the naming scheme and the semantic meaning
-            of the terms used to identify an Atom category are
+          <t>An atom:feed can contain one or more atom:category elements.
+            In Atom the naming scheme and the semantic meaning of the
+            terms used to identify an Atom category are
             application-defined.</t>
           <t>The following are additional requirements on the use of the
             atom:category element when used in a ROLIE Feed:<list
@@ -731,12 +690,12 @@
         </section>
         <section title="Use of the &quot;atom:updated&quot; Element"
           anchor="atom-synd-feed-updated">
-          <t>The atom:updated element identifies the date and time that
-            an Entry was last updated.</t>
+          <t>The atom:updated element identifies the date and time that a
+            Feed was last updated.</t>
           <t>The atom:updated element MUST be populated with the current
-            time at the instant the Feed representation was last updated
-            by adding, updating, or deleting an Entry; or changing any
-            metadata for the Feed.</t>
+            time at the instant the Feed was last updated by adding,
+            updating, or deleting an Entry; or changing any metadata for
+            the Feed.</t>
         </section>
       </section>
       <section title="Use of the  &quot;atom:entry&quot; Element"
@@ -772,6 +731,9 @@
       & extensionElement*)
   }   ]]></artwork>
         </figure>
+        <t>The notable changes from <xref target="RFC4287"/> are the
+          addition of rolieFormat and rolieProperty, and atomContent no
+          longer being optional. </t>
         <t>The following subsections contain requirements for Entries in
           a ROLIE Feed.</t>
         <section title="Use of the &quot;atom:content&quot; Element"
@@ -793,6 +755,8 @@
       empty
   }   ]]></artwork>
           </figure>
+          <t>This restricts atomContent in ROLIE to the atomOutofLine
+            forumulation presented in<xref target="RFC4287"/>.</t>
           <t>The type attribute MUST identify the serialization type of
             the content, for example, application/xml or
             application/json. A prefixed media type MAY be used to
@@ -984,13 +948,10 @@
           ROLIE. This allows category scheme namespaces to be managed in
           a more consistent way, allowing for greater interoperability
           between content producers and consumers.</t>
-        <t>The namespace "urn:ietf:params:rolie:category:local" has been
-          reserved in the IANA ROLIE Parameters table for private use as
-          defined in <xref target="RFC8126"/>. Any category whose
-          "scheme" attribute uses this as a prefix MUST be considered
-          private use. Implementations encountering such a category MUST
-          parse the content without error, but MAY otherwise ignore the
-          element.</t>
+        <t>Any category whose "scheme" attribute uses an unregistered
+          scheme MUST be considered private use. Implementations
+          encountering such a category MUST parse the content without
+          error, but MAY otherwise ignore the element.</t>
         <t>Use of the "atom:category" element is discussed in the
           following subsections.</t>
         <section
@@ -1052,9 +1013,10 @@
           </figure>
           <t>A security automation information type represents a class of
             information that represents the same or similar information
-            model <xref target="RFC3444"/>. Notional examples of
-            information types include:<list style="hanging"
-            hangIndent="4">
+            model <xref target="RFC3444"/>. Note that this document does
+            not register any information types, but offers the following
+            as examples of potential information types:<list
+            style="hanging" hangIndent="4">
             <t hangText="indicator:">Computing device- or network-related
               "observable features and phenomenon that aid in the
               forensic or proactive detection of malicious activity; and
@@ -1153,7 +1115,9 @@
             >The "value" attribute of this property is a text
             representation indicating the individual or organization that
             authored the content referenced by the "src" attribute of the
-            entry's atom:content element.</t>
+            entry's atom:content element. This author may differ from the
+            atom:author when the author of the content and the entry are
+            different people or entities.</t>
           <t hangText="urn:ietf:params:rolie:property:content-id">The
             "value" attribute of this property is a text representation
             of an identifier pertaining to or extracted from the content
@@ -1274,10 +1238,6 @@
           <c>urn:ietf:params:rolie:property:local</c>
           <c>This document, <xref target="content-model-property"/></c>
           <c>None</c>
-          <c>category:local</c>
-          <c>urn:ietf:params:rolie:category:local</c>
-          <c>This document, <xref target="content-model-category"/></c>
-          <c>None</c>
           <c>property:content-author-name</c>
           <c>urn:ietf:params:rolie:property:content-author-name</c>
           <c>This document, <xref target="content-model-property"/></c>
@@ -1308,7 +1268,8 @@
             <t>name: The full name of the security resource information
               type as a string from the printable ASCII character set
               <xref target="RFC0020"/> with individual embedded spaces
-              allowed. The ABNF <xref target="RFC5234"/> syntax for this
+              allowed. This value must be unique in the context of this
+              table. The ABNF <xref target="RFC5234"/> syntax for this
               field is: <list>
               <t>1*VCHAR *(SP 1*VCHAR)</t>
               </list></t>
@@ -1338,13 +1299,6 @@
             target="atompub-discover"/></t>
           <t>Related information: None</t>
           </list></t>
-        <t>Category Document registration:<list style="none">
-          <t>URI suffix: rolie/categorydocument</t>
-          <t>Change controller: IETF</t>
-          <t>Specification document: This document, <xref
-            target="atompub-discover-category"/></t>
-          <t>Related information: None</t>
-          </list></t>
       </section>
     </section>
     <section title="Security Considerations" anchor="security">
@@ -1361,16 +1315,12 @@
         format="counter"/>). It can also be useful to log and audit
         access to sensitive resources to verify that proper access
         controls remain in place over time.</t>
-      <t>The approach described herein is based upon all policy
-        enforcements being implemented at the point when a resource
-        representation is created. As such, producers sharing cyber
-        security information using this specification must take care to
-        authenticate their HTTP clients using a suitably strong user
-        authentication mechanism. Sharing communities that are exchanging
-        information on well-known indicators and incidents for purposes
-        of public education may choose to rely upon HTTP Authentication
-        or similar. A number of authentication schemes are defined in the
-        <eref
+      <t>Access control to information published using ROLIE should use
+        mechanisms that are appropriate to the sensitivity of the
+        information. Primitive authentication mechanisms like HTTP Basic
+        Authentication [RFC7617] are rarely appropriate for sensitive
+        information. A number of authentication schemes are defined in
+        the <eref
         target="https://www.iana.org/assignments/http-authschemes/http-authschemes.xhtml"
         >HTTP Authentication Schemes Registry</eref>. Of these, <xref
         target="RFC7486">HOBA</xref> and <xref target="RFC7804"
@@ -1381,9 +1331,7 @@
         and/or operational response for indicators and incidents
         targeting high value information systems should adopt a suitably
         stronger user authentication solution, such as a risk-based or
-        multi-factor approach. In general, trust in the sharing
-        consortium will depend upon the members maintaining adequate user
-        authentication mechanisms.</t>
+        multi-factor approach.</t>
       <t>Collaborating consortiums may benefit from the adoption of a
         federated identity solution, such as those based upon <xref
         target="RFC6749">OAuth</xref> with <xref target="RFC7797"
@@ -1421,7 +1369,7 @@
         consider leveraging, e.g. the &lt;RIDPolicy&gt; element in the
         RID schema. Refer to RFC6545 section 9 for more information.
         Additionally, the underlying serialization approach used in the
-        message (e.g., XML, JSON) can offer encryption and message
+        representation (e.g., XML, JSON) can offer encryption and message
         authentication capabilities. For example, XMLDSig <xref
         target="RFC3275"/> for XML, and JSON Web Encryption <xref
         target="RFC7516"/> and JSON Web Signature<xref target="RFC7515"/>
@@ -1442,7 +1390,7 @@
         implementers. When selecting this mechanism, implementations need
         to ensure that their choice provides a means for authenticating
         the server. As described in the discovery section, DNS SRV
-        Records are a possible secure solution to discovery.</t>
+        Records are a possible solution to discovery.</t>
     </section>
     <section title="Privacy Considerations" anchor="privacy">
       <t>The optional author field may provide an identification privacy
@@ -1458,7 +1406,7 @@
         field of the entry in order to build out information about a
         given user. This correlation attempt can be mitigated by not
         using HTTP requests to POST entries when profiling is a risk, and
-        rather use backend control of the feeds.</t>
+        rather use backend control of the Feeds.</t>
       <t>Adoption of the information sharing approach described in this
         document will enable users to more easily perform correlations
         across separate, and potentially unrelated, cyber security
@@ -1478,8 +1426,6 @@
         In addition, any increase in the risk of this type of abuse
         should be offset by the corresponding increase in effectiveness
         that this specification affords to the defenders.</t>
-      <t>Proper usage of TLS as described in <xref target="atompub-tls"/>
-        will in many cases aid in the mitigation of these issues. </t>
       <t>Overall, ROLIE introduces few privacy concerns above and beyond
         those present in any other HTTP protocol. Those that exist can be
         mitigated by following security considerations and carefully
@@ -1492,9 +1438,9 @@
         and made many suggestions that have helped to improve this
         document.</t>
       <t>The authors would also like to thank the MILE Working Group, the
-        SACM Working Group, and countless other people from both within the
-        IETF community and outside of it for their excellent review and
-        effort towards constructing this draft. </t>
+        SACM Working Group, and countless other people from both within
+        the IETF community and outside of it for their excellent review
+        and effort towards constructing this draft. </t>
     </section>
   </middle>
   <back>
@@ -2017,6 +1963,10 @@
       </section>
     </section>
     <section title="Change History" anchor="appendix-delta">
+      <t>Changes in draft-ietf-mile-rolie-11 since
+        draft-ietf-mile-rolie-09 revision:<list>
+        <t>Incorporated ART last call review and AD review changes</t>
+        </list></t>
       <t>Changes in draft-ietf-mile-rolie-09 since
         draft-ietf-mile-rolie-08 revision:<list>
         <t>TLS requirements changed to clarify TLS versioning and
