@@ -336,14 +336,15 @@
         </section>
         <section title="Service Document Discovery" anchor="atompub-discover">
           <t>The Service Document serves as the "head" of a given ROLIE repository: from the Service
-            Document all other repository content can be discovered. A new consumer will need to
-            locate the location of this Service Document in order to begin exploring the provided
-            Collections. The consumer can directly receive this URL from a web page or other
-            out-of-band communication, or it can follow links from a Feed or Entry document that
-            provide the Service Document URL. </t>
-          <t>This document does not provide a fully automated discovery mechanism. A future
-            standardization effort will provide a discovery mechanism that allows automated systems
-            to dynamically discover ROLIE Service Documents.</t>
+            Document all other repository content can be discovered. A client will need to determine
+            the URL for retrieving this Service Document to discover the Collections provided by the
+            repository. The client might deterrmine the URL from a web page, based on out-of-band
+            communication, or through a "service" link relation in a Feed or Entry document that the
+            client has already retrieved. The latter is a typical scenario if the client learns of a
+            specific feed or entry through an out-of-band mechanism.</t>
+          <t>This document does not provide a fully automated discovery mechanism. A mechanism may
+            be defined in the future that allows automated clients to discover the URL to use to
+            retrieve a ROLIE Service Document representing the head of the ROLIE repository.</t>
         </section>
       </section>
       <section title="Category Documents" anchor="atompub-discover-category">
