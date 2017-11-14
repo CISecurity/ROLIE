@@ -341,7 +341,7 @@
             repository. The client might deterrmine the URL from a web page, based on out-of-band
             communication, or through a "service" link relation in a Feed or Entry document that the
             client has already retrieved. The latter is a typical scenario if the client learns of a
-            specific feed or entry through an out-of-band mechanism.</t>
+            specific feed or entry through an out-of-band mechanism, and wishes to discove additional information provided by the repository.</t>
           <t>This document does not provide a fully automated discovery mechanism. A mechanism may
             be defined in the future that allows automated clients to discover the URL to use to
             retrieve a ROLIE Service Document representing the head of the ROLIE repository.</t>
