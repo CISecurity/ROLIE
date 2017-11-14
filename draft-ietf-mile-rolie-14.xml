@@ -5,8 +5,7 @@
   <!ENTITY RFC3688 SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3688.xml">
   <!ENTITY RFC2119 SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
   <!ENTITY RFC8141 SYSTEM
-  "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8141.xml">
-  <!ENTITY RFC2782 SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2782.xml">
+  "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8141.xml"> 
   <!ENTITY RFC7797 SYSTEM
   "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7797.xml">
   <!ENTITY RFC3339 SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3339.xml">
@@ -14,7 +13,6 @@
   <!ENTITY RFC3553 SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3553.xml">
   <!ENTITY RFC3986 SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3986.xml">
   <!ENTITY RFC4287 SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4287.xml">
-  <!ENTITY RFC4642 SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4642.xml">
   <!ENTITY RFC7525 SYSTEM
   "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7525.xml">
   <!ENTITY RFC7970 SYSTEM
@@ -24,11 +22,7 @@
   <!ENTITY RFC8126 SYSTEM
   "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8126.xml">
   <!ENTITY RFC5234 SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5234.xml">
-  <!ENTITY RFC5280 SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5280.xml">
-  <!ENTITY RFC5785 SYSTEM
-  "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5785.xml">
   <!ENTITY RFC6546 SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6546.xml">
-  <!ENTITY RFC7589 SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7589.xml">
   
   <!ENTITY RFC3275 SYSTEM
   "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3275.xml">
@@ -1124,8 +1118,8 @@
   </middle>
   <back>
     <references title="Normative References"> &RFC0020;&RFC2119; &RFC3339; &RFC3688; &RFC3986;
-      &RFC4287; &RFC5005; &RFC5023; &RFC7970; &RFC6546; &RFC3553; &RFC8126; &xml-names; &RFC7589;
-      &RFC5280; &RFC7525; &RFC4642; &RFC5785; &RFC8174; &RFC2045;<reference anchor="relax-NG"
+      &RFC4287; &RFC5005; &RFC5023; &RFC7970; &RFC6546; &RFC3553; &RFC8126; &xml-names; &RFC7525;
+      &RFC8174; &RFC2045;<reference anchor="relax-NG"
         target="https://www.oasis-open.org/committees/relax-ng/compact-20021121.html">
         <front>
           <title>RELAX NG Compact Syntax</title>
@@ -1138,8 +1132,8 @@
         </front>
       </reference>
     </references>
-    <references title="Informative References"> &RFC8141; &RFC2782; &RFC3275; &RFC7516; &RFC7515;
-      &RFC7486; &RFC7804; &RFC7616; &RFC6749; &RFC7617; &RFC3444; &RFC5234; &RFC7797; <reference
+    <references title="Informative References"> &RFC8141; &RFC3275; &RFC7516; &RFC7515; &RFC7486;
+      &RFC7804; &RFC7616; &RFC6749; &RFC7617; &RFC3444; &RFC5234; &RFC7797; <reference
         anchor="SAML-core"
         target="http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf">
         <front>
